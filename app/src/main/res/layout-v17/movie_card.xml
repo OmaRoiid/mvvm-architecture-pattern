@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+  <android.support.v7.widget.CardView
+    android:layout_width="200dp"
+    android:layout_height="180dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:ignore="RtlCompat">
+    <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+    <ImageView
+      android:id="@+id/movie_image"
+      android:layout_width="match_parent"
+      android:layout_height="100dp"
+      android:layout_marginTop="8dp"
+      android:layout_marginStart="8dp"
+      android:layout_marginEnd="8dp"
+      android:src="@drawable/movies_cover"
+      android:scaleType="centerCrop"
+      />
+      <TextView
+
+        android:id="@+id/movie_name_tv"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:layout_below="@+id/movie_image"
+        android:layout_centerHorizontal="true"
+        android:text="@string/movie_name"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        />
+      
+      <TextView
+        android:id="@+id/movie_desc_tv"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/movie_name_tv"
+        android:text="@string/movie_desc"
+        android:textSize="12sp"
+        android:linksClickable="true"
+        android:textDirection="ltr"
+        />
+
+    
+</RelativeLayout>
+
+  </android.support.v7.widget.CardView>
+
+</android.support.constraint.ConstraintLayout>

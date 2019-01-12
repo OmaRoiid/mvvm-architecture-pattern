@@ -1,0 +1,5 @@
+<resources>
+  <string name="app_name">mvvm-architecture-pattern</string>
+  <string name="movie_name">movie Name</string>
+  <string name="movie_desc">movie Desc</string>
+</resources>
