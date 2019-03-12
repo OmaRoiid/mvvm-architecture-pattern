@@ -1,10 +1,10 @@
-package com.example.omar_salem.mvvm_architectural_pattern.SplashScreen
+package com.example.omar_salem.mvvm_architectural_pattern.ui.SplashScreen
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import com.example.omar_salem.mvvm_architectural_pattern.MainActivity
+import com.example.omar_salem.mvvm_architectural_pattern.ui.MoviesHomeActivity
 import com.example.omar_salem.mvvm_architectural_pattern.R
 
 class SplashScreen : AppCompatActivity() {
@@ -13,7 +13,7 @@ class SplashScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash__screen)
         Handler().postDelayed({
-         startMainActivity= Intent(this@SplashScreen,MainActivity::class.java)
+         startMainActivity= Intent(this@SplashScreen, MoviesHomeActivity::class.java)
             this@SplashScreen.startActivity(startMainActivity)
             finish()
         }, 3000)
