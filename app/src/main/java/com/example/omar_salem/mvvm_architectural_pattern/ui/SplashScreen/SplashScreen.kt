@@ -1,10 +1,10 @@
 package com.example.omar_salem.mvvm_architectural_pattern.ui.SplashScreen
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import com.example.omar_salem.mvvm_architectural_pattern.ui.MoviesHomeActivity
+import com.example.omar_salem.mvvm_architectural_pattern.ui.HomeScreen.MoviesHomeActivity
 import com.example.omar_salem.mvvm_architectural_pattern.R
 
 class SplashScreen : AppCompatActivity() {

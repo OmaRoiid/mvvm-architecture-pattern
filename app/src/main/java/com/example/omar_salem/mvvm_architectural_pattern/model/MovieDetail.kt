@@ -1,4 +1,4 @@
-package com.example.omar_salem.mvvm_architectural_pattern.Model
+package com.example.omar_salem.mvvm_architectural_pattern.model
 
 import com.google.gson.annotations.SerializedName
 
@@ -14,5 +14,5 @@ data class MovieDetail (
         @SerializedName("overview")
         val movieOverview :String ,
         @SerializedName("vote_average")
-        val movieVoteAverage : String
+        val movieVoteAverage : Int
 )

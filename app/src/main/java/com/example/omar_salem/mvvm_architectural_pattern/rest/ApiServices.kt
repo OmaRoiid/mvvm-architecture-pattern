@@ -1,10 +1,7 @@
 package com.example.omar_salem.mvvm_architectural_pattern.rest
 
-import com.example.omar_salem.mvvm_architectural_pattern.Model.MovieItemResponse
-import com.example.omar_salem.mvvm_architectural_pattern.Model.MoviesRepository
-import com.example.omar_salem.mvvm_architectural_pattern.util.ApiUtils
+import com.example.omar_salem.mvvm_architectural_pattern.model.MovieItemResponse
 import retrofit2.Call
-import retrofit2.Retrofit
 import retrofit2.http.GET
 import retrofit2.http.Query
 

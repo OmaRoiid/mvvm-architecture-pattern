@@ -8,7 +8,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.2'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.20"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.21"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -30,11 +30,11 @@ task clean(type: Delete) {
 }
 ext{
     //Android Libs Version
-    supportLibraryVersion = '27.1.1'
+    supportLibraryVersion = '1.0.0-beta01'
     constraintLayoutVersion = '1.1.3'
     archLifecycleVersion = '1.0.3'
     archLifecycleCompilerVersion = '1.0.0'
     archLifecycleExtensionsVersion = '1.0.0'
-    roomVersion = '1.0.0-alpha4'
+    roomVersion = '2.0.0-beta01'
 
 }

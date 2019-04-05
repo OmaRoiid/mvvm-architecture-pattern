@@ -5,14 +5,14 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.omar_salem.mvvm_architectural_pattern"
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -25,24 +25,30 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
-    implementation "com.android.support.constraint:constraint-layout:$rootProject.constraintLayoutVersion"
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha03'
+    implementation "androidx.constraintlayout:constraintlayout:2.0.0-alpha4"
     //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
     // ViewModel and LiveData
-    implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0-alpha03'
     // cardview
-    implementation "com.android.support:cardview-v7:$rootProject.supportLibraryVersion"
+    //noinspection GradleCompatible
+    implementation "androidx.cardview:cardview:1.0.0"
     //recyclerview
-    implementation "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+
+    implementation "androidx.recyclerview:recyclerview:1.0.0"
     //Room DB
-    implementation"android.arch.persistence.room:runtime:$rootProject.roomVersion"
-    annotationProcessor "android.arch.persistence.room:compiler:$rootProject.roomVersion"
+    implementation "androidx.room:room-runtime:2.0.0"
+    //Annotations 
+    annotationProcessor "androidx.room:room-compiler:2.0.0"
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    androidTestImplementation "android.arch.persistence.room:testing:$rootProject.roomVersion"
+    androidTestImplementation 'androidx.test:runner:1.2.0-alpha03'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha03'
+    androidTestImplementation "androidx.room:room-testing:2.0.0"
 
 }
 
