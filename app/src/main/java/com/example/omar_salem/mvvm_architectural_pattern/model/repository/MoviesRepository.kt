@@ -2,6 +2,7 @@ package com.example.omar_salem.mvvm_architectural_pattern.model.repository
 
 
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.omar_salem.mvvm_architectural_pattern.model.MovieDetail
@@ -23,7 +24,7 @@ class MoviesRepository  : ViewModel() {
 
 //Fetch Data from API when app in online mode
     fun fetchMovies() :MutableLiveData<List<MovieDetail>> {
-        var mRetrofit=RetrofitClient()
+        val mRetrofit=RetrofitClient()
         var movieResponseLiveData : MutableLiveData<List<MovieDetail>> = MutableLiveData()
                  mRetrofit.
                  getRetrofitClient.
@@ -32,19 +33,18 @@ class MoviesRepository  : ViewModel() {
                  enqueue(object : Callback<MovieItemResponse> {
                      override fun onResponse(call: Call<MovieItemResponse>, response: Response<MovieItemResponse>) {
                          //Send response.body  to MainActivityViewModel
-                         movieResponseLiveData = response.body()!!.results
+                         if( response.isSuccessful) {
+                             movieResponseLiveData.value=response.body()!!.results
+                             Log.d("Response",response.code().toString())
+                         }
 
                      }
 
                      override fun onFailure(call: Call<MovieItemResponse>, t: Throwable) {
                         //Show Error Msg in screen
+                            Log.d("Error",t.message.toString())
                      }
                  })
-
-
-
-
-
 
 return movieResponseLiveData
     }

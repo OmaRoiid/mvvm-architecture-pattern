@@ -22,6 +22,7 @@ fun initMoviesHomeViewModel ()
 
 
     fun getMoviesFromRepositry () :LiveData<List<MovieDetail>> {
+
         return movieRebo.fetchMovies()
     }
 }

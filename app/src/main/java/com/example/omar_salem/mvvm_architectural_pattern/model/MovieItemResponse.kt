@@ -10,7 +10,7 @@ data class MovieItemResponse(
         @SerializedName("page")
         val page: Int,
         @SerializedName("results")
-        val results: MutableLiveData<List<MovieDetail>>,
+        val results: List<MovieDetail>,
         @SerializedName("total_pages")
         val totalPages: Int,
         @SerializedName("total_results")
