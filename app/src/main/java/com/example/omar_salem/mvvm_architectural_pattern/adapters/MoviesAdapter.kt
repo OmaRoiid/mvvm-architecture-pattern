@@ -29,6 +29,7 @@ class MoviesAdapter( val mContext :Context ,var moviesList: List<MovieDetail> ) 
     override fun getItemCount(): Int = moviesList.size
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+
         holder.movieItemTittle.text=moviesList[position].movieTitle
         holder.movieItemOverview.text=moviesList[position].movieOverview
         holder.movieItemRate.text= java.lang.Double.parseDouble(moviesList[position].movieVoteAverage.toString()).toString()

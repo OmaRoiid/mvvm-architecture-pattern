@@ -2,7 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
   package="com.example.omar_salem.mvvm_architectural_pattern">
-  <uses-permission android:name="android.permission.INTERNET" />
+
+  <uses-permission android:name="android.permission.INTERNET"/>
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+
   <application
     android:allowBackup="true"
     android:icon="@mipmap/ic_launcher"
@@ -11,7 +15,9 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme"
     tools:ignore="GoogleAppIndexingWarning">
-    <activity android:name="com.example.omar_salem.mvvm_architectural_pattern.ui.SplashScreen.SplashScreen">
+    <activity android:name=".ui.DetailScreen.DetailScreenActivity">
+    </activity>
+    <activity android:name=".ui.SplashScreen.SplashScreen">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 
