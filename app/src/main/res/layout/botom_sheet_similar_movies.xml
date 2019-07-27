@@ -2,17 +2,43 @@
 <androidx.constraintlayout.widget.ConstraintLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/bottom_sheet"
   android:layout_width="match_parent"
-  android:layout_height="match_parent">
-<androidx.recyclerview.widget.RecyclerView
-  android:id="@+id/rv_similar_movies_list"
-  android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:layout_marginBottom="8dp"
-  app:layout_constraintStart_toStartOf="parent"
-  app:layout_constraintEnd_toEndOf="parent"
-  app:layout_constraintBottom_toBottomOf="parent"
-  app:layout_constraintTop_toTopOf="parent"
-  android:scrollbars="vertical"/>
+
+
+  >
+  <LinearLayout
+    android:id="@+id/layout_view"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/card_view_background"
+    android:orientation="horizontal"
+    android:gravity="center"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="1.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:ignore="MissingConstraints">
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_margin="8dp"
+      android:fontFamily="@font/aladin"
+      android:text="@string/similar_movies_tv"
+      android:textColor="@color/white_color"
+      android:textSize="25sp"
+      />
+  </LinearLayout>
+  <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/rv_similar_movies_list"
+    android:layout_width="match_parent"
+    android:layout_height="670dp"
+    android:layout_marginBottom="8dp"
+    android:scrollbars="vertical"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/layout_view"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

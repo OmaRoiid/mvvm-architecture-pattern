@@ -18,12 +18,11 @@ import kotlinx.android.synthetic.main.movie_card.view.*
 /**
  * TODO: Add class header
  */
-class MoviesAdapter( val mContext :Context ,var moviesList: List<MovieDetail> ) : RecyclerView.Adapter<MoviesAdapter.MyViewHolder>() {
-
+class MoviesAdapter( val mContext :Context,var mOnClickedItemListener: OnClickedItemListener ,var moviesList: List<MovieDetail>  ) : RecyclerView.Adapter<MoviesAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):MyViewHolder {
         val mView: View = LayoutInflater.from(parent.context).inflate(R.layout.movie_card,parent,false)
-        return MyViewHolder(mView)
+        return MyViewHolder(mView,mOnClickedItemListener)
     }
 
     override fun getItemCount(): Int = moviesList.size
@@ -40,18 +39,24 @@ class MoviesAdapter( val mContext :Context ,var moviesList: List<MovieDetail> ) 
 
     }
 
-    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class MyViewHolder(itemView: View,mOnClickedItemListener: OnClickedItemListener) : RecyclerView.ViewHolder(itemView),View.OnClickListener {
         val movieItemTittle: TextView
         val movieItemOverview:TextView
         val movieItemRate:TextView
         var movieItemRateBar: ScaleRatingBar
         val movieItemPoster: ImageView
+        val mOnClickedItemListener:OnClickedItemListener
         init {
             movieItemTittle=itemView.findViewById(R.id.cv_movie_name_tv)
             movieItemOverview=itemView.findViewById(R.id.cv_movie_desc_tv)
             movieItemRate=itemView.findViewById(R.id.cv_movie_rate_tv)
             movieItemPoster=itemView.findViewById(R.id.cv_movie_image)
             movieItemRateBar= ScaleRatingBar(mContext)
+            this.mOnClickedItemListener=mOnClickedItemListener
+            itemView.setOnClickListener(this)
+        }
+        override fun onClick(clickedView: View?) {
+            mOnClickedItemListener.OnItemClicked(adapterPosition)
         }
     }
 }

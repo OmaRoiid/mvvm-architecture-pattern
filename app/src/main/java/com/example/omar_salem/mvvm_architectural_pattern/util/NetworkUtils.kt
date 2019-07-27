@@ -12,14 +12,15 @@ import androidx.core.content.ContextCompat.startActivity
 /**
  * TODO: Add class header
  */
-class NetworkUtils(private val currentScreenContext : Context) {
+class NetworkUtils {
 
-     fun isNetworkAvailable(): Boolean {
+     fun isNetworkAvailable( currentScreenContext : Context): Boolean {
         val connectivityManager = currentScreenContext.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetworkInfo = connectivityManager.activeNetworkInfo
+
         return activeNetworkInfo != null && activeNetworkInfo.isConnected
     }
-    fun openNetworkSittingsScreen ()
+    fun openNetworkSittingsScreen ( currentScreenContext : Context)
     {
         val dialogBuilder = AlertDialog.Builder(currentScreenContext)
         dialogBuilder.setMessage("Do you want to Open WI-FI Sittings Screen?")

@@ -3,4 +3,5 @@
   <string name="movie_name">movie Name</string>
   <string name="movie_desc">movie Desc</string>
   <string name="user_rate">5.2</string>
+  <string name="similar_movies_tv">Similar Movies</string>
 </resources>
