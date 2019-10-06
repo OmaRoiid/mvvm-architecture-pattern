@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="160dp"
+  android:layout_height="500dp"
+  android:layout_marginTop="8dp"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+  <androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_centerHorizontal="true"
+    android:background="@color/card_view_background"
+    android:innerRadius="0dp"
+    android:shape="ring"
+    android:thicknessRatio="2"
+    app:cardCornerRadius="30dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:ignore="RtlCompat">
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/card_view_background"
+      >
+      <ImageView
+        android:id="@+id/cv_movie_image"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_alignParentTop="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/movies_cover"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+      <TextView
+        android:id="@+id/cv_movie_name_tv"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_below="@+id/cv_movie_image"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/aladin"
+        android:text="@string/movie_name"
+        android:textAlignment="center"
+        android:textColor="#ffff"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cv_movie_image"/>
+
+      <TextView
+        android:id="@+id/cv_movie_desc_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="500dp"
+        android:layout_below="@+id/cv_movie_name_tv"
+        android:layout_centerInParent="true"
+        android:padding="8dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/boogaloo"
+        android:maxLines="4"
+        android:text="@string/movie_desc"
+        android:textColor="#ffff"
+        android:textDirection="ltr"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cv_movie_name_tv"/>
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+  </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

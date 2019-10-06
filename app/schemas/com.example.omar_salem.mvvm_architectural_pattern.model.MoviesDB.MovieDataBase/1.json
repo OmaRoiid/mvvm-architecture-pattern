@@ -1,0 +1,63 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "7bfe7868c4a7cc5c680e0dd77e3e2107",
+    "entities": [
+      {
+        "tableName": "movieDetail",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`Movie_Poster` TEXT NOT NULL, `Movie_Title` TEXT NOT NULL, `Movie_Overview` TEXT NOT NULL, `Movie_VoteAvarage` REAL NOT NULL, `Movie_ID` INTEGER NOT NULL, `Movie_Release` TEXT NOT NULL, PRIMARY KEY(`Movie_ID`))",
+        "fields": [
+          {
+            "fieldPath": "moviePoster",
+            "columnName": "Movie_Poster",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "movieTitle",
+            "columnName": "Movie_Title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "movieOverview",
+            "columnName": "Movie_Overview",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "movieVoteAverage",
+            "columnName": "Movie_VoteAvarage",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "movieID",
+            "columnName": "Movie_ID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "releaseDate",
+            "columnName": "Movie_Release",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "Movie_ID"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"7bfe7868c4a7cc5c680e0dd77e3e2107\")"
+    ]
+  }
+}
