@@ -60,7 +60,7 @@ import androidx.lifecycle.ViewModelProvider
         Toast.makeText(this@MoviesHomeActivity,parsingErrMsg,Toast.LENGTH_LONG).show()
     }
     /*
-     * check your network conniction  to retreve data from server or from DataBase
+     * check  network connection to retrieve data from server or from DataBase
      */
     private fun isNetworkAvailable(): Boolean {
         val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
