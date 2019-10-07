@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.example.omar_salem.mvvm_architectural_pattern.adapters.MoviesAdapter
 import com.example.omar_salem.mvvm_architectural_pattern.model.MovieDetail
 import com.example.omar_salem.mvvm_architectural_pattern.R
@@ -18,6 +17,7 @@ import org.parceler.Parcels
 import com.example.omar_salem.mvvm_architectural_pattern.callbacks.NetworkListener
 import android.net.ConnectivityManager
 import android.content.Context
+import androidx.lifecycle.ViewModelProvider
 
 
 /**
@@ -37,7 +37,7 @@ import android.content.Context
         super.onCreate(savedInstanceState)
         setUpRecyclerView()
         //init the ViewModel Obj
-        mMoviesHomeViewModel = ViewModelProviders.of(this@MoviesHomeActivity).get(MoviesHomeViewModel::class.java)
+        mMoviesHomeViewModel = ViewModelProvider(this@MoviesHomeActivity).get(MoviesHomeViewModel::class.java)
         fetchMoviesFromServerOrDB(isNetworkAvailable())
     }
     private fun setUpRecyclerView() {
@@ -59,6 +59,9 @@ import android.content.Context
     override fun onParsingError(parsingErrMsg: String) {
         Toast.makeText(this@MoviesHomeActivity,parsingErrMsg,Toast.LENGTH_LONG).show()
     }
+    /*
+     * check your network conniction to
+     */
     private fun isNetworkAvailable(): Boolean {
         val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetworkInfo = connectivityManager.activeNetworkInfo
