@@ -6,7 +6,6 @@ import com.example.omar_salem.mvvm_architectural_pattern.callbacks.NetworkListen
 import com.example.omar_salem.mvvm_architectural_pattern.model.MovieDetail
 import com.example.omar_salem.mvvm_architectural_pattern.model.MoviesDB.MovieDataBase
 import com.example.omar_salem.mvvm_architectural_pattern.model.repository.MoviesRepository
-import kotlinx.coroutines.launch
 
 /**
  *  @author Omar Salem
@@ -21,10 +20,9 @@ class MoviesHomeViewModel(application : Application) : AndroidViewModel(applicat
     init {
         val movieDao = MovieDataBase.getDatabase(application).getMovieDao()
         movieRepo = MoviesRepository(movieDao)
-
     }
       fun insertIntoDB(listMovieDetail: List<MovieDetail>) {
-        movieRepo.insert(listMovieDetail)
+        movieRepo.insertToDB(listMovieDetail)
     }
     fun getMoviesFromDB():LiveData<List<MovieDetail>>{
         return movieRepo.fetchMoviesFromDB()

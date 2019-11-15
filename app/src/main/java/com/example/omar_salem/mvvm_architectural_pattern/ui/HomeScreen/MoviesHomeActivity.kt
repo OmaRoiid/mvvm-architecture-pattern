@@ -19,7 +19,6 @@ import android.net.ConnectivityManager
 import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 
-
 /**
  * @author Omar Salem
  * Created at  Mar 12, 2019
@@ -33,22 +32,30 @@ import androidx.lifecycle.ViewModelProvider
     private lateinit var mMoviesHomeViewModel: MoviesHomeViewModel
     private lateinit var mMovieAdapter: MoviesAdapter
 
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setUpRecyclerView()
         //init the ViewModel Obj
         mMoviesHomeViewModel = ViewModelProvider(this@MoviesHomeActivity).get(MoviesHomeViewModel::class.java)
         fetchMoviesFromServerOrDB(isNetworkAvailable())
+
     }
+
     private fun setUpRecyclerView() {
         rv_movies_list.layoutManager = LinearLayoutManager(this)
         rv_movies_list.setHasFixedSize(true)
     }
 
-    //Using Parceler Lib to passing Clicked Movie Obj to Detail Activity , More details please visit  this link --> https://github.com/johncarl81/parceler
+    /*
+    * Using Parceler Lib to passing Clicked Movie Obj to Detail Activity
+    * More details please visit  this link --> https://github.com/johncarl81/parceler
+    * */
     override fun onItemClicked(position: Int) {
-        val onMoviePositionClicked :MovieDetail = mMovieAdapter.moviesList[position]
-        val sendingObjToDetailActivity=Intent(this,DetailScreenActivity::class.java)
+        val onMoviePositionClicked: MovieDetail = mMovieAdapter.moviesList[position]
+        val sendingObjToDetailActivity = Intent(this, DetailScreenActivity::class.java)
         sendingObjToDetailActivity.putExtra("clickedMovie", Parcels.wrap(onMoviePositionClicked))
         startActivity(sendingObjToDetailActivity)
     }
@@ -56,39 +63,50 @@ import androidx.lifecycle.ViewModelProvider
     override fun getLayoutResourceId(): Int {
         return R.layout.activity_main
     }
+
     override fun onParsingError(parsingErrMsg: String) {
-        Toast.makeText(this@MoviesHomeActivity,parsingErrMsg,Toast.LENGTH_LONG).show()
+        Toast.makeText(this@MoviesHomeActivity, parsingErrMsg, Toast.LENGTH_LONG).show()
     }
+
     /*
-     * check your network conniction  to retreve data from server or from DataBase
+     * check your network connection  to retrieve data from server or from DataBase
      */
     private fun isNetworkAvailable(): Boolean {
         val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetworkInfo = connectivityManager.activeNetworkInfo
         return activeNetworkInfo != null && activeNetworkInfo.isConnected
     }
-    private fun fetchMoviesFromServerOrDB(flag:Boolean){
-        if(flag)
-        {
+
+    private fun fetchMoviesFromServerOrDB(flag: Boolean) {
+
+        if (flag) {
+
             mMoviesHomeViewModel.getMoviesFromServer(this).observe(this, Observer<List<MovieDetail>> { observedList ->
-                mMovieAdapter = MoviesAdapter(this@MoviesHomeActivity,this ,observedList)
-                mMovieAdapter.notifyDataSetChanged()
+                mMovieAdapter = MoviesAdapter(this@MoviesHomeActivity, this, observedList)
+                mMovieAdapter.notifyDataSetChanged( )
                 rv_movies_list.adapter = mMovieAdapter
                 //Insert the Observedlist Into Room DataBase
                 mMoviesHomeViewModel.insertIntoDB(observedList)
+
             })
-        }
-        else
-        {
-            mMoviesHomeViewModel.getMoviesFromDB().observe(this, Observer <List<MovieDetail>> {
-                mMovieAdapter = MoviesAdapter(this@MoviesHomeActivity,this ,it)
+
+        } else {
+            mMoviesHomeViewModel.getMoviesFromDB().observe(this, Observer<List<MovieDetail>> {
+                mMovieAdapter = MoviesAdapter(this@MoviesHomeActivity, this, it)
                 mMovieAdapter.notifyDataSetChanged()
                 rv_movies_list.adapter = mMovieAdapter
+
             })
-            Toast.makeText(this@MoviesHomeActivity,"Offline Mode ",Toast.LENGTH_LONG).show()
+
+            Toast.makeText(this@MoviesHomeActivity, "Offline Mode ", Toast.LENGTH_LONG).show()
+
         }
 
     }
+
+
+
+
 
 }
 

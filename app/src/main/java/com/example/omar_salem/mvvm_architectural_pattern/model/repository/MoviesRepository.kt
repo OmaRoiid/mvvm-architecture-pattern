@@ -29,11 +29,12 @@ import retrofit2.Response
  * Singletone Pattern
  */
 class MoviesRepository(private val mMovieDao: MovieDao)  {
+
 //Fetch Data from API when app in online mode
     private lateinit var mNetworkListener:NetworkListener
+    //get all Movies in DB
+    private val allMovies: LiveData<List<MovieDetail>> = mMovieDao.getSavedMovies()
 
-
-    private val allNotes: LiveData<List<MovieDetail>> = mMovieDao.getSavedMovies()
     fun fetchMovies( networkResponseListener: NetworkListener ) :MutableLiveData<List<MovieDetail>> {
        this.mNetworkListener=networkResponseListener
         val mRetrofit=RetrofitClient()
@@ -47,11 +48,10 @@ class MoviesRepository(private val mMovieDao: MovieDao)  {
                          //Send response.body  to MainActivityViewModel
                          if( response.isSuccessful && response.code()==200) {
                              movieResponseLiveData.value=response.body()!!.results
-                                     // saveMovies(response.body()!!.results)
+
                          }
                          if(response.code()!=200) {
-                             networkResponseListener.onParsingError("Something is wrong in the Server ")
-
+                             networkResponseListener.onParsingError("Something is wrong ")
                          }
                      }
 
@@ -65,7 +65,7 @@ class MoviesRepository(private val mMovieDao: MovieDao)  {
      return movieResponseLiveData
     }
 
-    fun insert(movieDetail: List<MovieDetail>)  {
+    fun insertToDB(movieDetail: List<MovieDetail>)  {
 
            class SaveMoviesListIntoDatabase  : AsyncTask<List<MovieDetail>, Void, Void>(){
                override fun doInBackground(vararg p0: List<MovieDetail>?): Void? {
@@ -76,10 +76,14 @@ class MoviesRepository(private val mMovieDao: MovieDao)  {
            }
            SaveMoviesListIntoDatabase().execute()
     }
+    //return All data in DB  in offline mode  to display on the  screen
     fun fetchMoviesFromDB() : LiveData<List<MovieDetail>>
     {
-        return allNotes
+        return allMovies
     }
+
+
+
 
 
 }

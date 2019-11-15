@@ -8,8 +8,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.omar_salem.mvvm_architectural_pattern.model.MovieDetail
 import com.example.omar_salem.mvvm_architectural_pattern.R
+import com.example.omar_salem.mvvm_architectural_pattern.util.ApiUtils
+import com.example.omar_salem.mvvm_architectural_pattern.util.ApiUtils.BASE_IMAGE_URL
 
 import kotlinx.android.synthetic.main.movie_card.view.*
 
@@ -26,17 +29,7 @@ class MoviesAdapter(private val mContext :Context, var mOnClickedItemListener: O
 
     override fun getItemCount(): Int = moviesList.size
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-
-        holder.movieItemTittle.text=moviesList[position].movieTitle
-        holder.movieItemOverview.text=moviesList[position].movieOverview
-        holder.movieItemRate.text= java.lang.Double.parseDouble(moviesList[position].movieVoteAverage.toString()).toString()
-        Glide.with(mContext)
-                .load("https://image.tmdb.org/t/p/w500"+moviesList[position].moviePoster )
-                .placeholder(R.drawable.loading)
-                .into(holder.movieItemPoster)
-
-    }
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) = holder.bind(position)
 
     inner class MyViewHolder(itemView: View,mOnClickedItemListener: OnClickedItemListener) : RecyclerView.ViewHolder(itemView),View.OnClickListener {
         val movieItemTittle: TextView
@@ -54,6 +47,17 @@ class MoviesAdapter(private val mContext :Context, var mOnClickedItemListener: O
         }
         override fun onClick(clickedView: View?) {
             mOnClickedItemListener.onItemClicked(adapterPosition)
+        }
+        fun bind(mPosition :Int)
+        {
+            movieItemTittle.text=moviesList[mPosition].movieTitle
+            movieItemOverview.text=moviesList[mPosition].movieOverview
+            movieItemRate.text= java.lang.Double.parseDouble(moviesList[mPosition].movieVoteAverage.toString()).toString()
+            Glide.with(mContext)
+                    .load(BASE_IMAGE_URL+moviesList[mPosition].moviePoster )
+                    .placeholder(R.drawable.loading)
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .into(movieItemPoster)
         }
     }
 }
