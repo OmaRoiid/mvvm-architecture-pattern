@@ -14,7 +14,7 @@ import com.example.omar_salem.mvvm_architectural_pattern.ui.DetailScreen.DetailS
 import com.example.omar_salem.mvvm_architectural_pattern.viewModel.MoviesHomeViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import org.parceler.Parcels
-import com.example.omar_salem.mvvm_architectural_pattern.callbacks.NetworkListener
+import com.example.omar_salem.mvvm_architectural_pattern.errorHandler.NetworkListener
 import android.net.ConnectivityManager
 import android.content.Context
 import androidx.lifecycle.ViewModelProvider
@@ -22,7 +22,7 @@ import androidx.lifecycle.ViewModelProvider
 /**
  * @author Omar Salem
  * Created at  Mar 12, 2019
- * last modifying at Oct 6, 2019
+ * last modifying at Nov 17 , 2019
  * This Class is only responsible for Drawing the  UI  of  the  App
  * Common issues:
  * 1-making any logical in main screen like  Build ur  RoomDB this breaks the principles of MVVM Arch
@@ -32,16 +32,12 @@ import androidx.lifecycle.ViewModelProvider
     private lateinit var mMoviesHomeViewModel: MoviesHomeViewModel
     private lateinit var mMovieAdapter: MoviesAdapter
 
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setUpRecyclerView()
         //init the ViewModel Obj
         mMoviesHomeViewModel = ViewModelProvider(this@MoviesHomeActivity).get(MoviesHomeViewModel::class.java)
         fetchMoviesFromServerOrDB(isNetworkAvailable())
-
     }
 
     private fun setUpRecyclerView() {
@@ -64,12 +60,12 @@ import androidx.lifecycle.ViewModelProvider
         return R.layout.activity_main
     }
 
-    override fun onParsingError(parsingErrMsg: String) {
-        Toast.makeText(this@MoviesHomeActivity, parsingErrMsg, Toast.LENGTH_LONG).show()
+    override fun onParsingError(parsingErrFlag: Boolean) {
+       fetchMoviesFromServerOrDB(parsingErrFlag)
     }
-
     /*
      * check your network connection  to retrieve data from server or from DataBase
+     * check  network connection to retrieve data from server or from DataBase
      */
     private fun isNetworkAvailable(): Boolean {
         val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

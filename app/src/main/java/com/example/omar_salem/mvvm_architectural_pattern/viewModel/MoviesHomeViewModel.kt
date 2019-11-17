@@ -2,7 +2,7 @@ package com.example.omar_salem.mvvm_architectural_pattern.viewModel
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.example.omar_salem.mvvm_architectural_pattern.callbacks.NetworkListener
+import com.example.omar_salem.mvvm_architectural_pattern.errorHandler.NetworkListener
 import com.example.omar_salem.mvvm_architectural_pattern.model.MovieDetail
 import com.example.omar_salem.mvvm_architectural_pattern.model.MoviesDB.MovieDataBase
 import com.example.omar_salem.mvvm_architectural_pattern.model.repository.MoviesRepository
@@ -28,7 +28,7 @@ class MoviesHomeViewModel(application : Application) : AndroidViewModel(applicat
         return movieRepo.fetchMoviesFromDB()
     }
 
-    fun getMoviesFromServer ( networkListener: NetworkListener) :LiveData<List<MovieDetail>> {
-        return movieRepo.fetchMovies(networkListener)
+    fun getMoviesFromServer ( errorHandler: NetworkListener) :LiveData<List<MovieDetail>> {
+        return movieRepo.fetchMovies(errorHandler)
     }
 }

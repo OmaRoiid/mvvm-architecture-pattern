@@ -2,18 +2,14 @@ package com.example.omar_salem.mvvm_architectural_pattern.model.repository
 
 
 
-import android.app.Application
 import android.os.AsyncTask
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.example.omar_salem.mvvm_architectural_pattern.callbacks.NetworkListener
+import com.example.omar_salem.mvvm_architectural_pattern.errorHandler.NetworkListener
 import com.example.omar_salem.mvvm_architectural_pattern.model.MovieDetail
 import com.example.omar_salem.mvvm_architectural_pattern.model.MovieItemResponse
 import com.example.omar_salem.mvvm_architectural_pattern.model.MoviesDB.MovieDao
-import com.example.omar_salem.mvvm_architectural_pattern.model.MoviesDB.MovieDataBase
 import com.example.omar_salem.mvvm_architectural_pattern.rest.ApiServices
 import com.example.omar_salem.mvvm_architectural_pattern.rest.RetrofitClient
 import com.example.omar_salem.mvvm_architectural_pattern.util.ApiUtils
@@ -24,19 +20,19 @@ import retrofit2.Response
 /**
  * @author Omar Salem
  * Created at  Mar 12, 2019
- * last modifying at Oct 6, 2019
+ * last modifying at Nov 17 , 2019
  * Repository  Class for Any logic Work
  * Singletone Pattern
  */
 class MoviesRepository(private val mMovieDao: MovieDao)  {
 
 //Fetch Data from API when app in online mode
-    private lateinit var mNetworkListener:NetworkListener
+    private lateinit var mErrorHandler:NetworkListener
     //get all Movies in DB
     private val allMovies: LiveData<List<MovieDetail>> = mMovieDao.getSavedMovies()
 
-    fun fetchMovies( networkResponseListener: NetworkListener ) :MutableLiveData<List<MovieDetail>> {
-       this.mNetworkListener=networkResponseListener
+    fun fetchMovies( errorHandler: NetworkListener ) :MutableLiveData<List<MovieDetail>> {
+       this.mErrorHandler=errorHandler
         val mRetrofit=RetrofitClient()
         var movieResponseLiveData : MutableLiveData<List<MovieDetail>> = MutableLiveData()
                  mRetrofit.
@@ -48,16 +44,14 @@ class MoviesRepository(private val mMovieDao: MovieDao)  {
                          //Send response.body  to MainActivityViewModel
                          if( response.isSuccessful && response.code()==200) {
                              movieResponseLiveData.value=response.body()!!.results
-
                          }
                          if(response.code()!=200) {
-                             networkResponseListener.onParsingError("Something is wrong ")
+                             errorHandler.onParsingError( parsingErrFlag = false)
                          }
                      }
 
                      override fun onFailure(call: Call<MovieItemResponse>, t: Throwable) {
-                            //Show Error Msg in screen
-                            Log.d("Error",t.message.toString())
+                            //No need  for this  function because Offline Mode
 
                      }
                  })
