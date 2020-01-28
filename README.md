@@ -10,11 +10,11 @@ Android Architecture components are a collection of libraries that help you desi
 * 3- ViewModel serves as a bridge between your View and Model. It works with the Model to get and save the data. The View observes and reacts to the data changes exposed by the ViewModel.
  ![myimage-alt-tag](https://miro.medium.com/max/1200/1*KnYBBZIDDeg4zVDDEcLw2A.png)
  ## Resources
-  * 1- Please Visit [codelabs](https://codelabs.developers.google.com/codelabs/android-room-with-a-view-kotlin/#0) for guidance  of how to use a MVVM Architectural Patterns in  best practice
+  * 1- Please Visit [codelabs](https://codelabs.developers.google.com/codelabs/android-room-with-a-view-kotlin/#0) for the guidance  of how to use a MVVM Architectural Patterns in  best practice
   * 2- This [Playlist](https://www.youtube.com/watch?v=ARpn-1FPNE4&list=PLrnPJCHvNZuDihTpkRs6SpZhqgBqPU118) will helps you to understand the Architectural but it just to make you familiar with its implementation
   ## Just for Help 
-* Please don't copy the  code in the resource no worries if some  of  it  but try to understand  the Architecture on your own way by reading from more resources then note it on your Notepad then implemnt it on your understood  
-*  You are not forced  to learn every new Architectural Pattern in Android development you just need to learn a new one  if  your project needs it , if not just be familiar with it 
+* Please don't copy the  code in the resource no worries if some  of  it  but try to understand  the Architecture on your own way by reading from more resources then note it on your Notepad then implement it on your understanding  
+*  You are not forced  to learn every new Architectural Pattern in Android development you just need to learn a new one  if  your project needs it , if not, just be familiar with it 
 * Hope this two Articles helps  [Learnings From 3 Years Of Android Development](https://medium.com/mindorks/learnings-from-3-years-of-android-development-c0d68b8ecea1) , [Android Architecture Patterns ](https://medium.com/upday-devs/android-architecture-patterns-part-1-model-view-controller-3baecef5f2b6)
 ## At The End
 *  Comments and reviews are so welcome  
